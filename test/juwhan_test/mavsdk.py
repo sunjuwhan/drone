@@ -1,10 +1,10 @@
 import asyncio
-from mavsdk import start_mavlink
+from mavsdk import System
 
 
 async def connect_drone():
-    mavsdk_server = await start_mavlink()
-    drone = await mavsdk_server.connect(system_address="serial:///dev/ttyAMA0:57600")
+    drone = System()
+    await drone.connect(system_address="serial:///dev/ttyAMA0:57600")
     return drone
 
 
