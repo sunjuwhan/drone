@@ -3,6 +3,7 @@ from mavsdk import System
 
 
 async def run():
+    
     drone = System()
     await drone.connect(system_address="serial:///dev/ttyAMA0:57600")
 
