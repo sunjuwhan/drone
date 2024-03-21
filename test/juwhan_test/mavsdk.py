@@ -1,14 +1,12 @@
 import asyncio
-from mavsdk import start_mavlink
+from mavsdk import System
 
 
-async def connect_drone():
-    mavsdk_server = await start_mavlink()
-    drone = await mavsdk_server.connect(system_address="serial:///dev/ttyAMA0:57600")
-    return drone
+async def run():
+    drone = System()
+    await drone.connect(system_address="serial:///dev/ttyAMA0:57600")
 
-
-async def arm_drone(drone):
+    print("Waiting for drone to become ready...")
     async for state in drone.core.connection_state():
         if state.is_connected:
             print("Drone discovered!")
@@ -27,12 +25,9 @@ async def arm_drone(drone):
             print("Drone is armed.")
             break
 
-
-async def main():
-    drone = await connect_drone()
-    await arm_drone(drone)
     print("End of script.")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(run())
