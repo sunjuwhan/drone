@@ -1,10 +1,9 @@
-print("asdfadsf")
 from mavsdk import System
-
-print("11111111")
 import asyncio
 
 async def connect_drone():
+    
+    
     drone = System()
     await drone.connect(system_address="serial:///dev/ttyAMA0:57600")
     return drone
