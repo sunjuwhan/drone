@@ -16,7 +16,7 @@ async def arm_drone(drone):
             break
 
     async for health in drone.telemetry.health():
-        if health.is_gyrometer_calibration_ok and health.is_accelerometer_calibration_ok and health.is_magnetometer_calibration_ok and health.barometer_calibration_status == drone.tune.TuneCalibrationStatus.CALIBRATED:
+        if health.is_gyrometer_calibration_ok and health.is_accelerometer_calibration_ok and health.is_magnetometer_calibration_ok:
             print("Drone is ready.")
             break
 
