@@ -1,6 +1,7 @@
-import asyncio
 print("asdfadsf")
 from mavsdk import System
+
+import asyncio
 print("11111111")
 
 async def connect_drone():
